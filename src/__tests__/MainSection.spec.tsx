@@ -2,8 +2,12 @@ import { render, screen } from "@testing-library/react";
 import { MainSection } from "../components";
 
 describe("MainSection", () => {
-    test("it shound render MainSection component", () => {
+    test("it should render MainSection component", () => {
         render(<MainSection/>);
-        expect(screen.getByRole("main")).toBeInTheDocument();
     });
+
+    test("it should render at least one article element", () => {
+        render(<MainSection/>);
+        expect(screen.getByRole("article")).toBeInTheDocument();
+    })
 });
