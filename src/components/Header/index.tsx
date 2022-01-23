@@ -1,10 +1,15 @@
-import { Box, Flex, Grid, Image, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Grid, Image, Text } from "@chakra-ui/react";
 
 export const Header = () => {
   return (
-    <Grid as="header" w="100%" placeItems="center" borderBlockEnd="1px solid black">
-      <Flex gap={8}>
-        <Image src="/" alt="Matheus Oliveira" borderRadius="full"/>
+    <Grid as="header" w="100%" placeItems="center">
+      <Flex
+        padding="1em"
+        gap={8}
+        borderRadius="1px"
+        boxShadow="0 0 0 1em #ee6352, 0 0 0 2em #d45379, 0 0 0 3em #a4558f"
+      >
+        <Avatar src="/me.jpg" alt="Matheus Oliveira" />
         <Box>
           <Text>Matheus Oliveira da Silva</Text>
           <Text>full stack developer e & entusiasta de açaí</Text>
