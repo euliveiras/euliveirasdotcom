@@ -1,5 +1,5 @@
 # euliveirasdotcom 🚀
-Blog sobre Javascript e programação. 💻 📚
+Blog sobre Javascript e programação 💻 📚
 ## Tabela de Conteúdos
 -  [Status do Projeto](#status-do-projeto)
 -  [Tecnologias utilizadas](#tecnologias-utilizadas)
