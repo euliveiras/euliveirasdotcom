@@ -1302,6 +1302,43 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.2.tgz#830beaec4b4091a9e9398ac50f865ddea52186b9"
   integrity sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==
 
+"@prismicio/client@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.1.0.tgz#561c8e783c5abc52475683dd498e0fdd2aca2125"
+  integrity sha512-TuixFHXKy+EfuV82rjji0LONSR2w0hr8i1wR9m2UVkunvc9Qa93HzREeSTQd1us2YRIIXPCDUE7xESgZ6Z+kiw==
+  dependencies:
+    "@prismicio/helpers" "^2.0.0"
+    "@prismicio/types" "^0.1.21"
+
+"@prismicio/helpers@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.0.0.tgz#ac975a7930d798835addd44cccb4598e26f53a50"
+  integrity sha512-8xnK2pj+us935wAvJvPdk4o6Zhn/z99aUWwaGYJBbNqQy8x0pahgXY1L3l6s6+9xcEdJy6kKL8IfvFS6U0tpXg==
+  dependencies:
+    "@prismicio/richtext" "^2.0.0-beta.3"
+    "@prismicio/types" "^0.1.20"
+    escape-html "^1.0.3"
+
+"@prismicio/react@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-2.0.3.tgz#6347ae867c74f0ed7fb19c1f4804e9cfe691bd42"
+  integrity sha512-dXN+DrcZx7dGjhRqxWdrzinT9khFxCIP53tpt7rmUSLAwtaVZe8WCUPL/qDXmGllcVeDryfwYu1O0REXdBBj1Q==
+  dependencies:
+    "@prismicio/helpers" "^2.0.0"
+    "@prismicio/richtext" "^2.0.0"
+
+"@prismicio/richtext@^2.0.0", "@prismicio/richtext@^2.0.0-beta.3":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-2.0.0.tgz#681e1ea847e1973086d45e285b12f649e1e2d5a3"
+  integrity sha512-XH2DJZUz0LEHO45UmZsabUKuHB+kHGqORLp5fYJ+RlpmRBcKowjI9hcQZqS/rvWMTY/l948yJvy0/MlCIiLz6w==
+  dependencies:
+    "@prismicio/types" "^0.1.19"
+
+"@prismicio/types@^0.1.19", "@prismicio/types@^0.1.20", "@prismicio/types@^0.1.21":
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.21.tgz#2d5f8a3f85435859ff290be96235b450b164a4e7"
+  integrity sha512-TMO4zpHlBFdvULDU5KQxeHOkI72lCkEKT3YwKhqiaiQWRVp7s3w27mXHjOWVBOlH/2qrzck219O84zBE6HzaMg==
+
 "@reach/alert@0.13.2":
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.13.2.tgz#71c4a848d51341f1d6d9eaae060975391c224870"
@@ -2307,6 +2344,11 @@ escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
+
+escape-html@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+  integrity sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg=
 
 escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -4936,6 +4978,11 @@ whatwg-encoding@^1.0.5:
   integrity sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==
   dependencies:
     iconv-lite "0.4.24"
+
+whatwg-fetch@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz#dced24f37f2624ed0281725d51d0e2e3fe677f8c"
+  integrity sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==
 
 whatwg-mimetype@^2.3.0:
   version "2.3.0"
