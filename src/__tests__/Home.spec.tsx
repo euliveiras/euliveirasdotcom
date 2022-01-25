@@ -14,7 +14,9 @@ const mockedProfileData = {} as ProfileData;
 const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
   () =>
     ({
-      getSingle: () => mockedProfileData,
+      getSingle: () => ({
+        data: mockedProfileData
+      })
     } as jest.MockedFunction<typeof Prismic.Client>)
 );
 
@@ -25,7 +27,7 @@ describe("Home", () => {
     const value = await getStaticProps({} as GetStaticPropsContext);
     expect(value).toEqual({
       props: {
-        ...mockedProfileData,
+        profile_data: { ...mockedProfileData },
       },
     });
   });
