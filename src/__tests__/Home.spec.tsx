@@ -1,11 +1,32 @@
+import * as Prismic from "@prismicio/client";
 import { render, screen } from "@testing-library/react";
-import Home from "../pages";
-import { getPrismicClient } from "../services/prismic";
+import { GetStaticPropsContext } from "next";
+import Home, { getStaticProps } from "../pages";
 
-jest.mock("@prismicio/client");
-jest.mock("../services/prismic");
+type ProfileData = {
+  profile_img: {};
+  profile_name: {};
+  profile_about: {};
+};
+
+const mockedProfileData = {} as ProfileData;
+
+const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
+  () =>
+    ({
+      getSingle: () => mockedProfileData,
+    } as jest.MockedFunction<typeof Prismic.Client>)
+);
 
 describe("Home", () => {
+  // beforeAll(() => {});
   beforeEach(() => render(<Home />));
-  test("it should be able to return posts info from getStaticProps", async () => {});
+  test("it should be able to return data from CMS", async () => {
+    const value = await getStaticProps({} as GetStaticPropsContext);
+    expect(value).toEqual({
+      props: {
+        ...mockedProfileData,
+      },
+    });
+  });
 });
