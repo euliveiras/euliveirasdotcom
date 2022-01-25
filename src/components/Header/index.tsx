@@ -19,7 +19,7 @@ export const Header = ({
   profile_name,
 }: HeaderProps) => {
   return (
-    <Grid as="header" w="100%" placeItems="center">
+    <Grid as="header" w="100%" placeItems="center" mb="10%">
       <Flex
         padding="1em"
         gap={8}

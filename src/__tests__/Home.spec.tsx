@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { GetStaticPropsContext } from "next";
 import Home, { getStaticProps } from "../pages";
 
-type ProfileData = {
+type HeaderData = {
   profile_img: {
     alt: string;
     url: string;
@@ -17,17 +17,17 @@ type ProfileData = {
 };
 
 interface HomeProps{
-  profile_data: ProfileData;
+  header_data: HeaderData;
 }
 
-const mockedHomeProps = { } as HomeProps
-const mockedProfileData = {} as ProfileData;
+const mockedHomeProps = {} as HomeProps
+const mockedHeaderData = {} as HeaderData;
 
 const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
   () =>
     ({
       getSingle: () => ({
-        data: mockedProfileData,
+        data: mockedHeaderData,
       }),
     } as jest.MockedFunction<typeof Prismic.Client>)
 );
@@ -39,7 +39,7 @@ describe("Home", () => {
     const value = await getStaticProps({} as GetStaticPropsContext);
     expect(value).toEqual({
       props: {
-        profile_data: { ...mockedProfileData },
+        header_data: { ...mockedHeaderData },
       },
     });
   });

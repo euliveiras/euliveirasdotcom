@@ -1,11 +1,11 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
 
 import { getPrismicClient } from "../services/prismic";
 import { Header, MainSection } from "../components";
 
 type HomeProps = {
-  profile_data: {
+  header_data: {
     profile_img: {
       alt: string;
       url: string;
@@ -19,12 +19,14 @@ type HomeProps = {
   };
 };
 
-export default function Home({ profile_data }: HomeProps) {
+export default function Home({ header_data }: HomeProps) {
   return (
-    <Grid placeItems="center">
-      <Header {...profile_data} />
+    <Box h="100vh">
+      <Grid placeItems="center">
+        <Header {...header_data} />
+      </Grid>
       <MainSection />
-    </Grid>
+    </Box>
   );
 }
 
@@ -33,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   console.log(data);
   return {
     props: {
-      profile_data: { ...data },
+      header_data: { ...data },
     },
   };
 };
