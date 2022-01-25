@@ -12,10 +12,10 @@ type HomeProps = {
     };
     profile_name: {
       text: string;
-    };
+    }[];
     profile_about: {
       text: string;
-    };
+    }[];
   };
 };
 

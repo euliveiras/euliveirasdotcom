@@ -7,10 +7,10 @@ type HeaderProps = {
   };
   profile_name: {
     text: string;
-  };
+  }[];
   profile_about: {
     text: string;
-  };
+  }[];
 };
 
 export const Header = ({
@@ -28,7 +28,7 @@ export const Header = ({
         borderRadius="1px"
         boxShadow="0 0 0 1em #ee6352, 0 0 0 2em #d45379, 0 0 0 3em #a4558f"
       >
-        <Avatar size="xl" src={profile_img?.url} alt={profile_name?.text} />
+        <Image boxSize="90px" src={profile_img?.url} alt={profile_img?.alt} borderRadius="full"/>
         <Box>
           <Text>{profile_name?.[0].text}</Text>
           <Text>{profile_about?.[0].text}</Text>
