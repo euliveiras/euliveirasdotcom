@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MainSection } from "../components";
 
 type MainSectionData = {
-  data: {
+  posts: {
     uid: string;
     first_publication_date: string;
     last_publication_date: string;
