@@ -1,4 +1,5 @@
 import { Grid, Box } from "@chakra-ui/react";
+import * as prismic from "@prismicio/client";
 import { GetStaticProps } from "next";
 
 import { getPrismicClient } from "../services/prismic";
@@ -31,11 +32,15 @@ export default function Home({ header_data }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { data } = await getPrismicClient().getSingle("profile");
-  console.log(data);
+  const Prismic = getPrismicClient();
+  const { data: headerData } = await Prismic.getSingle("profile");
+  const postsData = await Prismic.getByType("post")
+  console.log(postsData);
+
   return {
     props: {
-      header_data: { ...data },
+      header_data: { ...headerData },
+      main_section_data: { results: postsData.results },
     },
   };
 };

@@ -3,7 +3,6 @@ Blog sobre Javascript e programação 💻 📚
 
 ![](https://img.shields.io/github/license/euliveiras/euliveirasdotcom)
 ![](https://img.shields.io/github/last-commit/euliveiras/euliveirasdotcom)
-
 ## Tabela de Conteúdos
 -  [Status do Projeto](#status-do-projeto)
 -  [Tecnologias utilizadas](#tecnologias-utilizadas)

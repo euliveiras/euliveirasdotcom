@@ -16,18 +16,27 @@ type HeaderData = {
   }[];
 };
 
-interface HomeProps{
+type PostsData = {
+  results: [];
+};
+
+interface HomeProps {
   header_data: HeaderData;
+  main_section_data: PostsData;
 }
 
-const mockedHomeProps = {} as HomeProps
+const mockedHomeProps = {} as HomeProps;
 const mockedHeaderData = {} as HeaderData;
+const mockedPostsData = { results: [] } as PostsData;
 
 const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
   () =>
     ({
       getSingle: () => ({
         data: mockedHeaderData,
+      }),
+      getByType: () => ({
+        results: [],
       }),
     } as jest.MockedFunction<typeof Prismic.Client>)
 );
@@ -40,6 +49,7 @@ describe("Home", () => {
     expect(value).toEqual({
       props: {
         header_data: { ...mockedHeaderData },
+        main_section_data: { ...mockedPostsData },
       },
     });
   });
