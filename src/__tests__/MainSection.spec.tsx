@@ -8,6 +8,7 @@ describe("MainSection", () => {
 
   test("it should render at least one article element", () => {
     render(<MainSection />);
+
     expect(screen.getAllByRole("article")[0]).toBeInTheDocument();
   });
 
