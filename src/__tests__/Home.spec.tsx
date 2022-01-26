@@ -3,6 +3,18 @@ import { render, screen } from "@testing-library/react";
 import { GetStaticPropsContext } from "next";
 import Home, { getStaticProps } from "../pages";
 
+type PostsData = {
+  uid: string;
+  first_publication_date: string;
+  last_publication_date: string;
+  data: {
+    post_title: [];
+    post_excerpt: [];
+    post_banner: {};
+    post_content: [];
+  };
+};
+
 type HeaderData = {
   profile_img: {
     alt: string;
@@ -16,18 +28,14 @@ type HeaderData = {
   }[];
 };
 
-type PostsData = {
-  results: [];
-};
-
-interface HomeProps {
+export type HomeProps = {
   header_data: HeaderData;
-  main_section_data: PostsData;
-}
+  main_section_data: PostsData[];
+};
 
 const mockedHomeProps = {} as HomeProps;
 const mockedHeaderData = {} as HeaderData;
-const mockedPostsData = { results: [] } as PostsData;
+const mockedPostsData = {} as PostsData;
 
 const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
   () =>
@@ -36,7 +44,7 @@ const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
         data: mockedHeaderData,
       }),
       getByType: () => ({
-        results: [],
+        results: mockedPostsData,
       }),
     } as jest.MockedFunction<typeof Prismic.Client>)
 );
