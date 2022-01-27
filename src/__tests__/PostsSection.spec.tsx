@@ -23,13 +23,15 @@ const mockedPostsSectionData = [
 ] as PostsSectionData[];
 
 describe("PostsSection", () => {
+  beforeEach(() => render(<PostsSection posts={mockedPostsSectionData} />));
   test("it should render PostsSection component", () => {
-    render(<PostsSection posts={mockedPostsSectionData} />);
   });
 
   test("it should render at least one article element", () => {
-    render(<PostsSection posts={mockedPostsSectionData} />);
-
     expect(screen.getAllByRole("article")[0]).toBeInTheDocument();
   });
+  test("it should render an element with text: 'Carregando' when posts props is undefined", () => {
+    render(<PostsSection posts={undefined}/>)
+    expect(screen.getByText("Carregando")).toBeInTheDocument()
+  })
 });
