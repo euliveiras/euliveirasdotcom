@@ -5,7 +5,7 @@ import { getPrismicClient } from "../services/prismic";
 import { Header, PostsSection } from "../components";
 
 export default function Home({ header_data, posts_section_data }) {
-  console.log("posts_section_data:", posts_section_data);
+  // console.log("posts_section_data:", posts_section_data);
   return (
     <Box h="100vh">
       <Grid placeItems="center">

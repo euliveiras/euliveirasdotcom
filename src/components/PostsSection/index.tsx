@@ -29,6 +29,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
           <Box
             as="article"
             h="100%"
+            w="360px"
             role="group"
             cursor={"pointer"}
             key={post.uid}
