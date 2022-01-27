@@ -24,7 +24,13 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
     return (
       <SimpleGrid minChildWidth={160} w="90%" m="0 auto" spacing={12}>
         {posts.map((post) => (
-          <Box as="article" h="100%" cursor={"pointer"} key={post.uid}>
+          <Box
+            as="article"
+            h="100%"
+            role="group"
+            cursor={"pointer"}
+            key={post.uid}
+          >
             <Text
               fontSize="2xl"
               sx={{
@@ -33,8 +39,8 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "0% 4px",
                 transition: "background-size 500ms ease-in-out",
-                _hover: { backgroundSize: "100% 4px", color: "inherit" },
               }}
+              _groupHover={{ backgroundSize: "100% 4px", color: "inherit" }}
               //   bgGradient="linear(#ee6352,#d45379,#a4558f)"
               //   backgroundPosition={"bottom left"}
               //   backgroundRepeat={"no-repeat"}
@@ -46,7 +52,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
             </Text>
             <Text mt={"2"}>{prismicH.asText(post.data.post_excerpt)}</Text>
             <Flex gap={2} textAlign="center" mt={"2"}>
-              <TimeIcon boxSize={"20px"}/>
+              <TimeIcon boxSize={"20px"} />
               <Text fontSize={"1rem"}>4 min to read</Text>
             </Flex>
           </Box>
