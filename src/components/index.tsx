@@ -1,2 +1,2 @@
 export { Header } from "./Header";
-export { MainSection } from "./MainSection";
+export { PostsSection } from "./PostsSection";

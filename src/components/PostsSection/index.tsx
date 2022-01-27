@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { SimpleGrid, Flex, Text, Box } from "@chakra-ui/react";
 import { TimeIcon } from "@chakra-ui/icons";
 
-type MainSectionData = {
+type PostsSectionData = {
   posts: {
     uid: string;
     first_publication_date: string;
@@ -17,7 +17,7 @@ type MainSectionData = {
   }[];
 };
 
-export const MainSection = ({ posts }: MainSectionData) => {
+export const PostsSection = ({ posts }: PostsSectionData) => {
   const router = useRouter();
 
   if (posts) {
@@ -45,8 +45,8 @@ export const MainSection = ({ posts }: MainSectionData) => {
               {prismicH.asText(post.data.post_title)}
             </Text>
             <Text mt={"2"}>{prismicH.asText(post.data.post_excerpt)}</Text>
-            <Flex gap={2} align="center" mt={"2"}>
-              <TimeIcon boxSize={"20px"} />
+            <Flex gap={2} textAlign="center" mt={"2"}>
+              <TimeIcon boxSize={"20px"}/>
               <Text fontSize={"1rem"}>4 min to read</Text>
             </Flex>
           </Box>

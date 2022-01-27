@@ -21,7 +21,7 @@ const data: HeaderProps = {
 };
 
 describe("Header", () => {
-  beforeEach(() => render(<Header {...data} />));
+  beforeEach(() => render(<Header data={data} />));
   test("it should render Header component", () => {
     expect(screen.getByRole("banner")).toBeInTheDocument();
   });

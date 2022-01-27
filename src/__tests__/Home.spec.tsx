@@ -30,12 +30,25 @@ type HeaderData = {
 
 export type HomeProps = {
   header_data: HeaderData;
-  main_section_data: PostsData[];
+  posts_section_data: PostsData[];
 };
 
 const mockedHomeProps = {} as HomeProps;
 const mockedHeaderData = {} as HeaderData;
-const mockedPostsData = {} as PostsData;
+const mockedPostsSectionData = [
+  {
+    data: {},
+    first_publication_date: "10/20/2010",
+    last_publication_date: "10/20/2010",
+    uid: "10/20/2010",
+  },
+  {
+    data: {},
+    first_publication_date: "11/20/2011",
+    last_publication_date: "11/20/2011",
+    uid: "11/20/2011",
+  },
+] as PostsData[];
 
 const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
   () =>
@@ -44,7 +57,20 @@ const spy = jest.spyOn(Prismic, "createClient").mockImplementation(
         data: mockedHeaderData,
       }),
       getByType: () => ({
-        results: mockedPostsData,
+        results: [
+          {
+            data: {},
+            first_publication_date: "10/20/2010",
+            last_publication_date: "10/20/2010",
+            uid: "10/20/2010",
+          },
+          {
+            data: {},
+            first_publication_date: "11/20/2011",
+            last_publication_date: "11/20/2011",
+            uid: "11/20/2011",
+          },
+        ],
       }),
     } as jest.MockedFunction<typeof Prismic.Client>)
 );
@@ -57,7 +83,7 @@ describe("Home", () => {
     expect(value).toEqual({
       props: {
         header_data: { ...mockedHeaderData },
-        main_section_data: { ...mockedPostsData },
+        posts_section_data: mockedPostsSectionData ,
       },
     });
   });
