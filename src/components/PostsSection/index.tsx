@@ -20,6 +20,8 @@ type PostsSectionData = {
 export const PostsSection = ({ posts }: PostsSectionData) => {
   const router = useRouter();
 
+  const handleClick = async (uid: string) => router.push(`/posts/${uid}`);
+
   if (posts) {
     return (
       <SimpleGrid minChildWidth={160} w="90%" m="0 auto" spacing={12}>
@@ -30,6 +32,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
             role="group"
             cursor={"pointer"}
             key={post.uid}
+            onClick={() => handleClick(post.uid)}
           >
             <Text
               fontSize="2xl"
