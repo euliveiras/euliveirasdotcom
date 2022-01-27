@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const Prismic = getPrismicClient();
   const { data: headerData } = await Prismic.getSingle("profile");
   const { results: postsSectionData } = await Prismic.getByType("post");
-  console.log("getByType(): ", postsSectionData)
+  // console.log("getByType(): ", postsSectionData)
   // console.log("postsSectionData[0]: ",postsSectionData[0].data);
   return {
     props: {
