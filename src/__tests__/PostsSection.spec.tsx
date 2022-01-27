@@ -120,4 +120,7 @@ describe("PostsSection", () => {
   //   };
   //   const value = await getStaticProps(context);
   // });
+  test("it should return the estimated read time correctly", () => {
+    
+  })
 });
