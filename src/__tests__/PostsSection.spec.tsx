@@ -36,7 +36,7 @@ const Posts = [
         url: "path-to-my-image",
         alt: "photo",
       },
-      post_content: [{ text: "poqpweopwq" }, {}],
+      post_content: [{ text: "poqpweopwq" }],
       post_excerpt: [{ text: "Resumo" }],
     },
     first_publication_date: "11111",
@@ -88,8 +88,10 @@ describe("PostsSection", () => {
     const { data, uid, first_publication_date } = Posts.find(
       (post) => post.uid === slug
     );
-    asHTMLHelper.mockReturnValue(data.post_content[0],);
-    asTextHelper.mockReturnValue(data.post_title[0].text)
+    asHTMLHelper.mockReturnValue(data.post_content[0]);
+    asTextHelper
+      .mockReturnValueOnce(data.post_title[0].text)
+      .mockReturnValueOnce(data.post_excerpt[0].text);
 
     const value = await getStaticProps(context);
     const post = {
@@ -120,7 +122,33 @@ describe("PostsSection", () => {
   //   };
   //   const value = await getStaticProps(context);
   // });
-  test("it should return the estimated read time correctly", () => {
-    
-  })
+  test("it should return the estimated read time correctly from a post", () => {
+    const { data, first_publication_date, uid, last_publication_date } =
+      Posts[1];
+
+    asHTMLHelper.mockReturnValue(data.post_content);
+    asTextHelper
+      .mockReturnValueOnce(data.post_excerpt[0].text)
+      .mockReturnValueOnce(data.post_title[0].text);
+
+    const excerpt = data.post_excerpt[0].text;
+    const title = data.post_title[0].text;
+    const timeToRead =
+      data.post_content[0].text.split(" ").length +
+      excerpt.split(" ").length +
+      title.split(" ").length;
+
+    const posts = [
+      {
+        data,
+        first_publication_date,
+        uid,
+        last_publication_date,
+      },
+    ] as PostsSectionProps[];
+
+    render(<PostsSection posts={posts} />);
+
+    expect(screen.getByText(`${Math.ceil(timeToRead / 200)} min to read`)).toBeInTheDocument();
+  });
 });

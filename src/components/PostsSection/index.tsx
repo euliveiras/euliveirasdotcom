@@ -46,7 +46,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
               <Text
                 fontSize="2xl"
                 sx={{
-                  backgroundImage: "linear-gradient(#ee6352,#d45379,#a4558f)",
+                  backgroundImage: "linear-gradient(#ee6352, #d45379, #a4558f)",
                   backgroundPosition: "bottom left",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "0% 4px",
@@ -65,7 +65,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
               <Text mt={"2"}>{excerpt}</Text>
               <Flex gap={2} textAlign="center" mt={"2"}>
                 <TimeIcon boxSize={"20px"} />
-                <Text fontSize={"1rem"}>
+                <Text fontSize={"1rem"} data-testid="time-to-read">
                   {Math.ceil(timeToRead / 200)} min to read
                 </Text>
               </Flex>
