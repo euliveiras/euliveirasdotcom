@@ -13,7 +13,7 @@ Blog sobre Javascript e programação 💻 📚
 
 Em construção. 🚧
 
-## Tecnologias utilizadas 🧰
+## Tecnologias utilizadas 
 
 - [Typescript](https://www.typescriptlang.org/)
 - [React](https://pt-br.reactjs.org/)
@@ -23,7 +23,11 @@ Em construção. 🚧
 - [React-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Autor 
-Matheus Oliveira
+
+![Matheus Oliveira](https://avatars.githubusercontent.com/u/53843982?v=4)
+
+![](https://img.shields.io/badge/email-matheus.skm%40hotmail.com-blue)
+
 
 ## Licença
 
