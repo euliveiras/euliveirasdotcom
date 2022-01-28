@@ -1,4 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react";
+import {RichTextField} from "@prismicio/types"
 import * as prismicH from "@prismicio/helpers";
 import {
   GetStaticPaths,
@@ -6,7 +7,6 @@ import {
   GetStaticProps,
   GetStaticPropsContext,
 } from "next";
-import { useRouter } from "next/router";
 import { getPrismicClient } from "../../services/prismic";
 
 type PostProps = {
@@ -69,8 +69,8 @@ export const getStaticProps: GetStaticProps = async (
 
   const post = {
     uid,
-    title: prismicH.asText(data.post_title),
-    content: prismicH.asHTML(data.post_content),
+    title: prismicH.asText(data.post_title as RichTextField),
+    content: prismicH.asHTML(data.post_content as RichTextField),
     excerpt: data.post_excerpt[0].text,
     banner: {
       url: data.post_banner.url,
