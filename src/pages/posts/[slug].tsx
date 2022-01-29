@@ -1,5 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react";
-import {RichTextField} from "@prismicio/types"
+import { RichTextField } from "@prismicio/types";
 import * as prismicH from "@prismicio/helpers";
 import {
   GetStaticPaths,
@@ -50,7 +50,17 @@ export default function Post({ postData }: PostProps) {
 export const getStaticPaths: GetStaticPaths = async (
   context: GetStaticPathsContext
 ) => {
-  return { paths: [], fallback: true };
+  const Prismic = getPrismicClient();
+  const document = await Prismic.getByType("post", { pageSize: 5 });
+  // console.log(document);
+  const params = document.results.map((result) => ({
+    params: { slug: result.id },
+  }));
+
+  return {
+    paths: params,
+    fallback: "blocking",
+  };
 };
 
 export const getStaticProps: GetStaticProps = async (
@@ -65,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (
     {}
   );
 
-  console.log(uid, data, first_publication_date);
+  // console.log(uid, data, first_publication_date);
 
   const post = {
     uid,
