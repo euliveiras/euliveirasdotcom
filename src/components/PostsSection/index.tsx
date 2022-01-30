@@ -12,7 +12,7 @@ type PostsSectionData = {
       post_title: [];
       post_excerpt: [];
       post_banner: {};
-      post_content: [];
+      post_content: [{ text: string }];
     };
   }[];
 };

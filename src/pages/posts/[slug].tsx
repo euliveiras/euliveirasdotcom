@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (
   const Prismic = getPrismicClient();
   const uid = context.params.slug;
 
-  const { data, first_publication_date } = await Prismic.getByUID(
+  const { data, first_publication_date } = await Prismic.getByUID<any>(
     "post",
     String(uid),
     {}
