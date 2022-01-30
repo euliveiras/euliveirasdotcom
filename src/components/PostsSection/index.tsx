@@ -18,8 +18,8 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
     return (
       <SimpleGrid minChildWidth={160} w="90%" m="0 auto" spacing={12}>
         {posts.map((post) => {
-          const excerpt = prismicH.asText(post.data.post_excerpt);
-          const title = prismicH.asText(post.data.post_title);
+          const excerpt = prismicH.asText(post.data.post_excerpt as any);
+          const title = prismicH.asText(post.data.post_title as any);
           const timeToRead = post?.data.post_content?.reduce((acc, item) => {
             const bodyText = item.text;
             const splitted = bodyText.split(" ");
