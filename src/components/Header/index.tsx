@@ -18,7 +18,7 @@ type HeaderProps = {
 export const Header = ({data
 }: HeaderProps) => {
   return (
-    <Grid as="header" w="100%" placeItems="center" mb="10%">
+    <Grid as="header" w="100%" placeItems="center">
       <Flex
         padding="1em"
         gap={8}

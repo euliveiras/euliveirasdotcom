@@ -1,5 +1,5 @@
-import { Grid, Box } from "@chakra-ui/react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { Box, Text } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
 
 import { getPrismicClient } from "../services/prismic";
 import { Header, PostsSection } from "../components";
@@ -8,9 +8,14 @@ export default function Home({ header_data, posts_section_data }) {
   // console.log("posts_section_data:", posts_section_data);
   return (
     <Box h="100vh">
-      <Grid placeItems="center">
-        <Header data={header_data} />
-      </Grid>
+      {/* <Grid placeItems="center">
+      </Grid> */}
+      <Header data={header_data} />
+      <Box textAlign={"center"} m={"4em 0 2em"}>
+        <Text as="h1" fontSize={"3xl"}>
+          blog sobre javascript e programação no geral
+        </Text>
+      </Box>
       <PostsSection posts={posts_section_data} />
     </Box>
   );

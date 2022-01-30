@@ -8,6 +8,7 @@ import {
   GetStaticPropsContext,
 } from "next";
 import { getPrismicClient } from "../../services/prismic";
+import { useRouter } from "next/router";
 
 type PostProps = {
   postData: {
@@ -24,13 +25,14 @@ type PostProps = {
 };
 
 export default function Post({ postData }: PostProps) {
-  // console.log(postData?.excerpt);
-  if (Object.is(postData, undefined)) {
+  const router = useRouter();
+
+  if (Object.is(router.isFallback, true)) {
     return <Text>carregando</Text>;
   }
 
   return (
-    <Box w="720px" m="0 auto">
+    <Box w="720px" m="0 auto 10%">
       <Text as="h1" _first={{ textAlign: "center" }} marginBlock={4}>
         {postData.title}
       </Text>
@@ -42,7 +44,12 @@ export default function Post({ postData }: PostProps) {
         maxW={"100%"}
         marginBlock={6}
       />
-      <Box dangerouslySetInnerHTML={{ __html: postData?.content }} />;
+      <Box
+        sx={{
+          "> h2, h3": { color: "green.500", marginBlock: "1em" },
+        }}
+        dangerouslySetInnerHTML={{ __html: postData?.content }}
+      />
     </Box>
   );
 }
@@ -52,14 +59,13 @@ export const getStaticPaths: GetStaticPaths = async (
 ) => {
   const Prismic = getPrismicClient();
   const document = await Prismic.getByType("post", { pageSize: 5 });
-  // console.log(document);
   const params = document.results.map((result) => ({
     params: { slug: result.id },
   }));
 
   return {
     paths: params,
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
