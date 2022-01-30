@@ -26,6 +26,7 @@ export const Header = ({data
         align="center"
         borderRadius="1px"
         boxShadow="0 0 0 1em #ee6352, 0 0 0 2em #d45379, 0 0 0 3em #a4558f"
+        mb={"5em"}
       >
         <Image
           boxSize="90px"

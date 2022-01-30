@@ -25,11 +25,6 @@ describe("PostsSection", () => {
     expect(screen.getAllByRole("group")[0]).toHaveAttribute("role", "group");
   });
 
-  test("it should render an element with text: 'Carregando' when posts props is undefined", () => {
-    render(<PostsSection posts={undefined} />);
-    expect(screen.getByText("Carregando")).toBeInTheDocument();
-  });
-
   test("it should return data of the post with the given slug", async () => {
     const slug = "uid-do-meu-outro-post";
     const context = {

@@ -11,11 +11,11 @@ export default function Home({ header_data, posts_section_data }) {
       {/* <Grid placeItems="center">
       </Grid> */}
       <Header data={header_data} />
-      <Box textAlign={"center"} m={"4em 0 2em"}>
+      {/* <Box textAlign={"center"} m={"4em 0 2em"}>
         <Text as="h1" fontSize={"3xl"}>
           blog sobre javascript e programação no geral
         </Text>
-      </Box>
+      </Box> */}
       <PostsSection posts={posts_section_data} />
     </Box>
   );

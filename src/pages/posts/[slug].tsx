@@ -10,7 +10,7 @@ import {
 import { getPrismicClient } from "../../services/prismic";
 import { useRouter } from "next/router";
 
-type PostProps = {
+export type PostProps = {
   postData: {
     uid: string;
     title: string;
@@ -18,7 +18,7 @@ type PostProps = {
     excerpt: string;
     banner: {
       url: string;
-      altText: string;
+      alt: string;
     };
     published_at: string;
   };
@@ -40,7 +40,7 @@ export default function Post({ postData }: PostProps) {
       <Text mt={2}>{postData.excerpt}</Text>
       <Image
         src={postData.banner.url}
-        alt={postData.banner.altText}
+        alt={postData.banner.alt}
         maxW={"100%"}
         marginBlock={6}
       />
@@ -62,7 +62,6 @@ export const getStaticPaths: GetStaticPaths = async (
   const params = document.results.map((result) => ({
     params: { slug: result.id },
   }));
-
   return {
     paths: params,
     fallback: true,
