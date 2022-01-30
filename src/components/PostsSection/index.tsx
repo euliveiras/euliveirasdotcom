@@ -3,18 +3,10 @@ import { useRouter } from "next/router";
 import { SimpleGrid, Flex, Text, Box } from "@chakra-ui/react";
 import { TimeIcon } from "@chakra-ui/icons";
 
+import { Post } from "../../utils/posts";
+
 type PostsSectionData = {
-  posts: {
-    uid: string;
-    first_publication_date: string;
-    last_publication_date: string;
-    data: {
-      post_title: [];
-      post_excerpt: [];
-      post_banner: {};
-      post_content: [{ text: string }];
-    };
-  }[];
+  posts: Post[];
 };
 
 export const PostsSection = ({ posts }: PostsSectionData) => {
