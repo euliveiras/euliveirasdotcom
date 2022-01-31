@@ -70,10 +70,16 @@ describe("Slug", () => {
   });
 
   test("it should render an element with the published_at text from a given post", () => {
-    expect(screen.getByText(`publicado em ${postData.published_at}`)).toBeInTheDocument();
+    expect(
+      screen.getByText(`publicado em ${postData.published_at}`)
+    ).toBeInTheDocument();
   });
 
   test("it should render an element with the excerpt text from a given post", () => {
     expect(screen.getByText(postData.excerpt)).toBeInTheDocument();
+  });
+
+  test("it should render an Image with alt text from a given post", () => {
+    expect(screen.getByAltText(postData.banner.alt)).toBeInTheDocument();
   });
 });
