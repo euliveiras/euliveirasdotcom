@@ -2,7 +2,12 @@ import { render, screen } from "@testing-library/react";
 import * as Router from "next/router";
 import * as Prismic from "@prismicio/client";
 
-import { GetStaticPaths, GetStaticPathsContext } from "next";
+import {
+  GetStaticPaths,
+  GetStaticPathsContext,
+  GetStaticPropsContext,
+  GetStaticProps,
+} from "next";
 
 import Posts, { Post } from "../utils/posts";
 import SlugPage, { getStaticPaths } from "../pages/posts/[slug]";
@@ -33,16 +38,17 @@ const postData = {
     alt: "alt text",
     url: "url",
   },
-  content: "",
-  excerpt: "",
+  content: "Conteúdo do Post",
+  excerpt: "Resumo do Post",
   published_at: "",
-  title: "",
-  uid: "",
+  title: "Título do post",
+  uid: "uid-do-post",
 };
 
 describe("Slug", () => {
-  beforeEach(() => render(<SlugPage postData={postData} />));
+  // beforeEach(() => render(<SlugPage postData={postData} />));
   test("it should render an element with text: 'Carregando' when router is fallback method is true", () => {
+    render(<SlugPage postData={postData} />);
     expect(screen.getByText("carregando")).toBeInTheDocument();
   });
   test("it should return correct paths from getStaticPaths in posts/slug page component", async () => {
@@ -52,5 +58,15 @@ describe("Slug", () => {
       params: { slug: post.id },
     }));
     expect(paths).toEqual(params);
+  });
+  test("it should render an element with the title text from a given post", () => {
+    mockedRouter.mockImplementation(
+      () =>
+        ({
+          isFallback: false,
+        } as Router.NextRouter)
+    );
+    render(<SlugPage postData={postData} />);
+    expect(screen.getByText(postData.title)).toBeInTheDocument();
   });
 });

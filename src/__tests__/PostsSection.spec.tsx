@@ -68,7 +68,7 @@ describe("PostsSection", () => {
   //   const value = await getStaticProps(context);
   // });
   test("it should return the estimated read time correctly from a post", () => {
-    const { data, first_publication_date, uid, last_publication_date } =
+    const { data, first_publication_date, uid, last_publication_date, id } =
       Posts[0];
 
     asHTMLHelper.mockReturnValue(data.post_content[0].text);
@@ -89,6 +89,7 @@ describe("PostsSection", () => {
         first_publication_date,
         uid,
         last_publication_date,
+        id,
       },
     ];
 
