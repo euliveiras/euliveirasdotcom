@@ -11,6 +11,7 @@ export type Post = {
   first_publication_date: string;
   last_publication_date: string;
   uid: string;
+  id: string;
 };
 
 const Posts: Post[] = [
@@ -32,6 +33,7 @@ const Posts: Post[] = [
     first_publication_date: "33333333",
     last_publication_date: "4444444",
     uid: "uid-do-meu-post",
+    id: "id-do-meu-primeiro-post",
   },
   {
     data: {
@@ -46,6 +48,7 @@ const Posts: Post[] = [
     first_publication_date: "11111",
     last_publication_date: "2222222",
     uid: "uid-do-meu-outro-post",
+    id: "id-do-meu-2-post",
   },
 ];
 
