@@ -82,4 +82,8 @@ describe("Slug", () => {
   test("it should render an Image with alt text from a given post", () => {
     expect(screen.getByAltText(postData.banner.alt)).toBeInTheDocument();
   });
+
+  test("it should render an text content from a given post", () => {
+    expect(screen.getByText(postData.content)).toBeInTheDocument();
+  });
 });
