@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import * as Prismic from "@prismicio/client";
 import * as prismicH from "@prismicio/helpers";
+import userEvent from "@testing-library/user-event";
 
 import Posts, { Post } from "../utils/posts";
 import { PostsSection } from "../components";
@@ -19,7 +20,7 @@ const asTextHelper = jest.spyOn(prismicH, "asText");
 const asHTMLHelper = jest.spyOn(prismicH, "asHTML");
 
 describe("PostsSection", () => {
-  beforeAll(() => render(<PostsSection posts={Posts} />));
+  beforeEach(() => render(<PostsSection posts={Posts} />));
 
   test("it should render at least one article element with the role group", () => {
     expect(screen.getAllByRole("group")[0]).toHaveAttribute("role", "group");
@@ -83,20 +84,19 @@ describe("PostsSection", () => {
       excerpt.split(" ").length +
       title.split(" ").length;
 
-    const posts: Post[] = [
-      {
-        data,
-        first_publication_date,
-        uid,
-        last_publication_date,
-        id,
-      },
-    ];
-
-    render(<PostsSection posts={posts} />);
+    // const posts: Post[] = [
+    //   {
+    //     data,
+    //     first_publication_date,
+    //     uid,
+    //     last_publication_date,
+    //     id,
+    //   },
+    // ];
 
     expect(
       screen.getByText(`${Math.ceil(timeToRead / 200)} min to read`)
     ).toBeInTheDocument();
+    cleanup();
   });
 });

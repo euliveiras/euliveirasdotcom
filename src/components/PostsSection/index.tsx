@@ -12,7 +12,10 @@ type PostsSectionData = {
 export const PostsSection = ({ posts }: PostsSectionData) => {
   const router = useRouter();
 
-  const handleClick = async (uid: string) => router.push(`/posts/${uid}`);
+  const handleClick = async (uid: string) => {
+    await fetch("/api/mongo");
+    return router.push(`/posts/${uid}`);
+  };
 
   if (posts) {
     return (
@@ -30,6 +33,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
               as="article"
               h="100%"
               w="360px"
+              data-testid="handleClick"
               role="group"
               cursor={"pointer"}
               key={post.uid}
