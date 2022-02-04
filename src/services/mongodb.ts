@@ -1,17 +1,37 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGO_URI;
-const db = "Cluster0";
+let uri = process.env.MONGODB_URI;
+let dbName = process.env.MONGODB_DB;
 
-export const getMongoClient = async () => {
-  const client = new MongoClient(uri);
-  try {
-    await client.connect();
+let cachedClient = null;
+let cachedDb = null;
 
-    await client.db(db).command({ ping: 1 });
-    console.log("Connected succesfuly to server!");
-    return client;
-  } catch (err) {
-    console.log(err.message);
+if (!uri) {
+  throw new Error(
+    "Please define the MONGODB_URI environment variable inside .env.local"
+  );
+}
+
+if (!dbName) {
+  throw new Error(
+    "Please define the MONGODB_DB environment variable inside .env.local"
+  );
+}
+
+export async function connectToDatabase() {
+  if (cachedClient && cachedDb) {
+    return { client: cachedClient, db: cachedDb };
   }
-};
+
+  const client = await MongoClient.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  const db = await client.db(dbName);
+
+  cachedClient = client;
+  cachedDb = db;
+
+  return { client, db };
+}

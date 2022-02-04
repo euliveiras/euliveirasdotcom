@@ -4,6 +4,7 @@ import { SimpleGrid, Flex, Text, Box } from "@chakra-ui/react";
 import { TimeIcon } from "@chakra-ui/icons";
 
 import { Post } from "../../utils/posts";
+import { fetchService } from "../../services/fetchService";
 
 type PostsSectionData = {
   posts: Post[];
@@ -13,7 +14,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
   const router = useRouter();
 
   const handleClick = async (uid: string) => {
-    await fetch("/api/mongo");
+    await fetchService("/api/postClick", "post", { uid });
     return router.push(`/posts/${uid}`);
   };
 
