@@ -9,6 +9,8 @@ import {
 } from "next";
 import { getPrismicClient } from "../../services/prismic";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { fetchService } from "../../services/fetchService";
 
 export type PostProps = {
   postData: {
@@ -26,6 +28,31 @@ export type PostProps = {
 
 export default function Post({ postData }: PostProps) {
   const router = useRouter();
+
+  const excerpt = postData.excerpt;
+  const title = postData.title;
+  const content = postData.content;
+
+  useEffect(() => {
+    const timeToTimeOut =
+      Math.ceil(
+        (content.split(" ").length +
+          excerpt.split(" ").length +
+          title.split(" ").length) /
+          200
+      ) *
+      60 *
+      1000;
+
+    console.log(timeToTimeOut);
+    const timeOut = setTimeout(() => {
+      fetchService("/api/postClick", "post", {
+        uid: postData.uid,
+        visit_retained: true,
+      }).then((data) => console.log(data));
+    }, timeToTimeOut);
+    return () => clearTimeout(timeOut);
+  });
 
   if (Object.is(router.isFallback, true)) {
     return <Text>carregando</Text>;
