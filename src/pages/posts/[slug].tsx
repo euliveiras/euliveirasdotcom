@@ -63,10 +63,10 @@ export default function Post({ postData }: PostProps) {
 
   return (
     <>
-    <Head>
-      <title>{postData.title}</title>
-    </Head>
-      <Box w="720px" m="0 auto 10%">
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
+      <Box w={["95%", "720px"]} margin={"0 auto 10%"}>
         {variant && (
           <ArrowBackIcon
             marginBlockStart={4}
@@ -82,19 +82,23 @@ export default function Post({ postData }: PostProps) {
         )}
         <Text
           as="h1"
-          _first={{ textAlign: "center" }}
-          marginBlock={4}
+          textAlign="center"
           fontFamily={"heading"}
           fontWeight={"bold"}
-          fontSize={["5xl"]}
+          fontSize={["3xl", "5xl"]}
           letterSpacing={"0.125rem"}
         >
           {postData.title}
         </Text>
-        <Text color="gray.600" fontStyle={"italic"}>
+        <Text
+          color="gray.600"
+          fontStyle={"italic"}
+          fontSize={["md"]}
+          marginBlock={4}
+        >
           first published in {postData.published_at}
         </Text>
-        <Text mt={2} fontWeight={"semibold"} fontSize={["xl"]}>
+        <Text mt={2} fontWeight={"semibold"} fontSize={["lg"]}>
           {postData.excerpt}
           asduhqudhuqhdushkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
         </Text>
@@ -106,11 +110,12 @@ export default function Post({ postData }: PostProps) {
           marginBlockEnd={8}
         />
         <Box
-          fontSize={"lg"}
-          lineHeight={"8"}
+          fontSize="lg"
+          lineHeight={"tall"}
           sx={{
             h2: {
-              fontSize: "1.7em",
+              fontSize: ["xl", "3xl"],
+              fontWeight: "bold",
               fontFamily: "heading",
               letterSpacing: "0.125rem",
               marginBlockEnd: "1.7rem",
