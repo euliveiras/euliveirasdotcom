@@ -1,5 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 import { getPrismicClient } from "../services/prismic";
 import { Header, PostsSection } from "../components";
@@ -7,17 +8,22 @@ import { Header, PostsSection } from "../components";
 export default function Home({ header_data, posts_section_data }) {
   // console.log("posts_section_data:", posts_section_data);
   return (
-    <Box h="100vh">
-      {/* <Grid placeItems="center">
+    <>
+      <Head>
+        <title>euliveiras | blog</title>
+      </Head>
+      <Box h="100vh">
+        {/* <Grid placeItems="center">
       </Grid> */}
-      <Header data={header_data} />
-      {/* <Box textAlign={"center"} m={"4em 0 2em"}>
+        <Header data={header_data} />
+        {/* <Box textAlign={"center"} m={"4em 0 2em"}>
         <Text as="h1" fontSize={"3xl"}>
           blog sobre javascript e programação no gerala
         </Text>
       </Box> */}
-      <PostsSection posts={posts_section_data} />
-    </Box>
+        <PostsSection posts={posts_section_data} />
+      </Box>
+    </>
   );
 }
 
