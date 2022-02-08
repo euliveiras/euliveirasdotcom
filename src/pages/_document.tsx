@@ -11,7 +11,7 @@ export default function Document() {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Ubuntu:wght@300;400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Ubuntu:ital,wght@0,300;0,400;1,300&display=swap"
           rel="stylesheet"
         />
         <title>euliveiras | blog</title>

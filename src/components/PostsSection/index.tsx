@@ -1,7 +1,7 @@
 import * as prismicH from "@prismicio/helpers";
 import { useRouter } from "next/router";
 import { SimpleGrid, Flex, Text, Box } from "@chakra-ui/react";
-import { TimeIcon } from "@chakra-ui/icons";
+import { TimeIcon, ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Post } from "../../utils/posts";
 import { fetchService } from "../../services/fetchService";
@@ -20,7 +20,12 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
 
   if (posts) {
     return (
-      <SimpleGrid minChildWidth={160} w="90%" m="0 auto" spacing={12}>
+      <SimpleGrid
+        minChildWidth={"320px"}
+        w={"90%"}
+        m="0 auto"
+        spacing={12}
+      >
         {posts.map((post) => {
           const excerpt = prismicH.asText(post.data.post_excerpt as any);
           const title = prismicH.asText(post.data.post_title as any);
@@ -33,7 +38,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
             <Box
               as="article"
               h="100%"
-              w="360px"
+              // w="360px"
               data-testid="handleClick"
               role="group"
               cursor={"pointer"}
@@ -41,6 +46,8 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
               onClick={() => handleClick(post.uid)}
             >
               <Text
+                fontFamily={"heading"}
+                fontWeight={"bold"}
                 fontSize="2xl"
                 sx={{
                   backgroundImage: "linear-gradient(#ee6352, #d45379, #a4558f)",
@@ -59,10 +66,17 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
               >
                 {title}
               </Text>
-              <Text mt={"2"}>{excerpt}</Text>
+              <Text mt={"2"} fontWeight={"semibold"}>
+                {excerpt}
+              </Text>
               <Flex gap={2} textAlign="center" mt={"2"}>
                 <TimeIcon boxSize={"20px"} />
-                <Text fontSize={"1rem"} data-testid="time-to-read">
+                <Text
+                  fontSize={"1rem"}
+                  data-testid="time-to-read"
+                  fontWeight={"bold"}
+                  color="pink.700"
+                >
                   {Math.ceil(timeToRead / 200)} min to read
                 </Text>
               </Flex>

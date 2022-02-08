@@ -17,7 +17,7 @@ type HeaderProps = {
 
 export const Header = ({ data }: HeaderProps) => {
   return (
-    <Grid as="header" w="100%" placeItems="center">
+    <Grid as="header" w="100%" placeItems="center" >
       <Flex justify="center" align="center" gap={8} padding="3em">
         {/*}
         borderRadius="1px"
@@ -31,8 +31,8 @@ export const Header = ({ data }: HeaderProps) => {
           borderRadius="full"
         />
         <Box>
-          <Text>{data?.profile_name?.[0].text}</Text>
-          <Text>{data?.profile_about?.[0].text}</Text>
+          <Text fontWeight={"medium"}>{data?.profile_name?.[0].text}</Text>
+          <Text fontWeight={"light"} fontStyle={"italic"}>{data?.profile_about?.[0].text}</Text>
         </Box>
       </Flex>
     </Grid>

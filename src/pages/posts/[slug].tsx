@@ -1,6 +1,7 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text, useBreakpointValue } from "@chakra-ui/react";
 import { RichTextField } from "@prismicio/types";
 import * as prismicH from "@prismicio/helpers";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   GetStaticPaths,
   GetStaticPathsContext,
@@ -28,6 +29,7 @@ export type PostProps = {
 
 export default function Post({ postData }: PostProps) {
   const router = useRouter();
+  const variant = useBreakpointValue({ lg: true });
 
   const excerpt = postData.excerpt;
   const title = postData.title;
@@ -60,20 +62,60 @@ export default function Post({ postData }: PostProps) {
 
   return (
     <Box w="720px" m="0 auto 10%">
-      <Text as="h1" _first={{ textAlign: "center" }} marginBlock={4}>
+      {variant && (
+        <ArrowBackIcon
+          marginBlockStart={4}
+          boxSize={14}
+          borderRadius="full"
+          position="absolute"
+          left={20}
+          onClick={() => router.push("/")}
+          cursor="pointer"
+          transition={"background 0.2s linear"}
+          _hover={{ backgroundColor: "pink.200" }}
+        />
+      )}
+      <Text
+        as="h1"
+        _first={{ textAlign: "center" }}
+        marginBlock={4}
+        fontFamily={"heading"}
+        fontWeight={"bold"}
+        fontSize={["5xl"]}
+        letterSpacing={"0.125rem"}
+      >
         {postData.title}
       </Text>
-      <Text>publicado em {postData.published_at}</Text>
-      <Text mt={2}>{postData.excerpt}</Text>
+      <Text color="gray.600" fontStyle={"italic"}>
+        first published in {postData.published_at}
+      </Text>
+      <Text mt={2} fontWeight={"semibold"} fontSize={["xl"]}>
+        {postData.excerpt}
+        asduhqudhuqhdushkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+      </Text>
       <Image
         src={postData.banner.url}
         alt={postData.banner.alt}
         maxW={"100%"}
-        marginBlock={6}
+        marginBlockStart={4}
+        marginBlockEnd={8}
       />
       <Box
+        fontSize={"lg"}
+        lineHeight={"8"}
         sx={{
-          "> h2, h3": { color: "green.500", marginBlock: "1em" },
+          h2: {
+            fontSize: "1.7em",
+            fontFamily: "heading",
+            letterSpacing: "0.125rem",
+            marginBlockEnd: "1.7rem",
+          },
+          "p + h2": {
+            marginBlock: "1.7rem",
+          },
+          strong: {
+            color: "pink.500",
+          },
         }}
         dangerouslySetInnerHTML={{ __html: postData?.content }}
       />

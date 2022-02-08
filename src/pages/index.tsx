@@ -13,7 +13,7 @@ export default function Home({ header_data, posts_section_data }) {
       <Header data={header_data} />
       {/* <Box textAlign={"center"} m={"4em 0 2em"}>
         <Text as="h1" fontSize={"3xl"}>
-          blog sobre javascript e programação no geral
+          blog sobre javascript e programação no gerala
         </Text>
       </Box> */}
       <PostsSection posts={posts_section_data} />
