@@ -128,6 +128,9 @@ export default function Post({ postData }: PostProps) {
             "p + p": {
               marginBlockStart: "1rem",
             },
+            a: {
+              textDecoration: "underline",
+            }
           }}
           dangerouslySetInnerHTML={{ __html: postData?.content }}
         />
