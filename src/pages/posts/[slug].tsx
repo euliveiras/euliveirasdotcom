@@ -126,7 +126,7 @@ export default function Post({ postData }: PostProps) {
               color: "pink.500",
             },
             "p + p": {
-              marginInlineStart: "1rem",
+              marginBlockStart: "1rem",
             },
           }}
           dangerouslySetInnerHTML={{ __html: postData?.content }}
