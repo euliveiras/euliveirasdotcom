@@ -47,7 +47,7 @@ export default function Post({ postData }: PostProps) {
       60 *
       1000;
 
-    console.log(timeToTimeOut);
+    // console.log(timeToTimeOut);
     const timeOut = setTimeout(() => {
       fetchService("/api/postClick", "post", {
         uid: postData.uid,
@@ -144,7 +144,7 @@ export const getStaticPaths: GetStaticPaths = async (
   const params = document.results.map((result) => ({
     params: { slug: result.uid },
   }));
-  console.log(document);
+  // console.log(document);
   return {
     paths: params,
     fallback: true,

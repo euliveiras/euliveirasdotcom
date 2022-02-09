@@ -40,12 +40,12 @@ export default async function handler(
         const result = await db
           .collection("posts")
           .updateOne(filter, updatedDocument);
-        console.log(result);
+        // console.log(result);
         return res.status(200).json(result);
       }
 
       if (visit_retained) {
-        console.log(req.body);
+        // console.log(req.body);
         const filter = { _id: post._id };
         const updatedDocument = {
           $set: {
@@ -55,7 +55,7 @@ export default async function handler(
         const result = await db
           .collection("posts")
           .updateOne(filter, updatedDocument);
-        console.log(result);
+        // console.log(result);
         return res.status(200).json(result);
       }
     } catch (err) {
