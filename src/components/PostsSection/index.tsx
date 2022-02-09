@@ -20,12 +20,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
 
   if (posts) {
     return (
-      <SimpleGrid
-        minChildWidth={"320px"}
-        w={"90%"}
-        m="0 auto"
-        spacing={12}
-      >
+      <SimpleGrid minChildWidth={"320px"} w={"90%"} m="0 auto" spacing={12}>
         {posts.map((post) => {
           const excerpt = prismicH.asText(post.data.post_excerpt as any);
           const title = prismicH.asText(post.data.post_title as any);

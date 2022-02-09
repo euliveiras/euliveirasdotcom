@@ -25,6 +25,7 @@ export type PostProps = {
       alt: string;
     };
     published_at: string;
+    last_modified: string;
   };
 };
 
@@ -58,7 +59,7 @@ export default function Post({ postData }: PostProps) {
   });
 
   if (Object.is(router.isFallback, true) || Object.is(postData, undefined)) {
-    return <Text>carregando</Text>;
+    return <Text>Carregando</Text>;
   }
 
   return (
@@ -93,10 +94,18 @@ export default function Post({ postData }: PostProps) {
         <Text
           color="gray.600"
           fontStyle={"italic"}
-          fontSize={["md"]}
+          fontSize={["sm", "md"]}
           marginBlock={4}
         >
-          first published in {postData.published_at}
+          publicado em {postData.published_at}
+        </Text>
+        <Text
+          color="gray.600"
+          fontStyle={"italic"}
+          fontSize={["sm", "md"]}
+          marginBlock={4}
+        >
+          modificado em {postData.last_modified}
         </Text>
         <Text mt={2} fontWeight={"semibold"} fontSize={["lg"]}>
           {postData.excerpt}
@@ -130,7 +139,7 @@ export default function Post({ postData }: PostProps) {
             },
             a: {
               textDecoration: "underline",
-            }
+            },
           }}
           dangerouslySetInnerHTML={{ __html: postData?.content }}
         />
@@ -160,11 +169,11 @@ export const getStaticProps: GetStaticProps = async (
   const Prismic = getPrismicClient();
   const uid = context.params.slug;
 
-  const { data, first_publication_date } = await Prismic.getByUID<any>(
-    "post",
-    String(uid),
-    {}
-  );
+  const {
+    data,
+    first_publication_date,
+    last_publication_date: last_modified,
+  } = await Prismic.getByUID<any>("post", String(uid), {});
 
   // console.log(uid, data, first_publication_date);
 
@@ -178,8 +187,13 @@ export const getStaticProps: GetStaticProps = async (
       altText: data.post_banner.alt,
     },
     published_at: new Date(first_publication_date).toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "long",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }),
+    last_modified: new Date(last_modified).toLocaleDateString("pt-BR", {
+      day: "numeric",
+      month: "short",
       year: "numeric",
     }),
   };

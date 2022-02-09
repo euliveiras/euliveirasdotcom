@@ -18,7 +18,7 @@ export default async function handler(
       const post = await db.collection("posts").findOne({ uid });
 
       if (Object.is(post, null) && first_visit) {
-        const doc = { uid, number_of_visits: 1, visit_retained: 0 };
+        const doc = { uid, number_of_visits: 1, visits_retained: 0 };
 
         try {
           const mongoResponse = await db.collection("posts").insertOne(doc);
@@ -49,7 +49,7 @@ export default async function handler(
         const filter = { _id: post._id };
         const updatedDocument = {
           $set: {
-            visit_retained: ++post.visit_retained,
+            visits_retained: ++post.visits_retained,
           },
         };
         const result = await db
