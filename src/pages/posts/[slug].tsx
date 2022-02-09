@@ -100,7 +100,6 @@ export default function Post({ postData }: PostProps) {
         </Text>
         <Text mt={2} fontWeight={"semibold"} fontSize={["lg"]}>
           {postData.excerpt}
-          asduhqudhuqhdushkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
         </Text>
         <Image
           src={postData.banner.url}
