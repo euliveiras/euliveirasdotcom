@@ -142,7 +142,7 @@ export const getStaticPaths: GetStaticPaths = async (
   const Prismic = getPrismicClient();
   const document = await Prismic.getByType("post", { pageSize: 5 });
   const params = document.results.map((result) => ({
-    params: { slug: result.id },
+    params: { slug: result.uid },
   }));
   console.log(document);
   return {
