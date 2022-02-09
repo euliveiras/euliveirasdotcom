@@ -32,16 +32,16 @@ export default function Post({ postData }: PostProps) {
   const router = useRouter();
   const variant = useBreakpointValue({ lg: true });
 
-  const excerpt = postData.excerpt;
-  const title = postData.title;
-  const content = postData.content;
-
   useEffect(() => {
+    if (Object.is(postData, undefined)) return;
+    const excerpt = postData?.excerpt;
+    const title = postData?.title;
+    const content = postData?.content;
     const timeToTimeOut =
       Math.ceil(
-        (content.split(" ").length +
-          excerpt.split(" ").length +
-          title.split(" ").length) /
+        (content?.split(" ").length +
+          excerpt?.split(" ").length +
+          title?.split(" ").length) /
           200
       ) *
       60 *
@@ -57,7 +57,7 @@ export default function Post({ postData }: PostProps) {
     return () => clearTimeout(timeOut);
   });
 
-  if (Object.is(router.isFallback, true)) {
+  if (Object.is(router.isFallback, true) || Object.is(postData, undefined)) {
     return <Text>carregando</Text>;
   }
 
@@ -125,6 +125,9 @@ export default function Post({ postData }: PostProps) {
             strong: {
               color: "pink.500",
             },
+            "p + p": {
+              marginInlineStart: "1rem",
+            },
           }}
           dangerouslySetInnerHTML={{ __html: postData?.content }}
         />
@@ -141,7 +144,7 @@ export const getStaticPaths: GetStaticPaths = async (
   const params = document.results.map((result) => ({
     params: { slug: result.id },
   }));
-  // console.log(document)
+  console.log(document);
   return {
     paths: params,
     fallback: true,
@@ -182,6 +185,6 @@ export const getStaticProps: GetStaticProps = async (
     props: {
       postData: post,
     },
-    revalidate: 60 * 60 * 24
+    revalidate: 60 * 60 * 24,
   };
 };
