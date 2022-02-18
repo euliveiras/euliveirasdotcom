@@ -44,7 +44,7 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
                 fontWeight={"bold"}
                 fontSize="2xl"
                 sx={{
-                  backgroundImage: "linear-gradient(98deg, #ee6352, #d45379, #a4558f)",
+                  backgroundImage: "linear-gradient(98deg,#ee6352, #d45379, #a4558f)",
                   backgroundPosition: "bottom left",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "0% 4px",
