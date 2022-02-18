@@ -50,18 +50,34 @@ const postData = {
   published_at: "1",
   title: "Título do post",
   uid: "uid-do-post",
+  last_modified: "",
 };
 
 describe("Slug", () => {
-  beforeEach(() => render(<SlugPage postData={postData} />));
+  beforeEach(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(), // deprecated
+        removeListener: jest.fn(), // deprecated
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+    render(<SlugPage postData={postData} />);
+  });
   test("it should render an element with text: 'Carregando' when router is fallback method is true", () => {
-    expect(screen.getByText("carregando")).toBeInTheDocument();
+    expect(screen.getByText("Carregando")).toBeInTheDocument();
   });
   test("it should return correct paths from getStaticPaths in posts/slug page component", async () => {
     const context = {};
     const { paths } = await getStaticPaths(context);
     const params = Posts.map((post) => ({
-      params: { slug: post.id },
+      params: { slug: post.uid },
     }));
     expect(paths).toEqual(params);
   });

@@ -31,9 +31,8 @@ describe("PostsSection", () => {
     const context = {
       params: { slug },
     };
-    const { data, uid, first_publication_date } = Posts.find(
-      (post) => post.uid === slug
-    );
+    const { data, uid, first_publication_date, last_publication_date } =
+      Posts.find((post) => post.uid === slug);
     asHTMLHelper.mockReturnValue(data.post_content[0].text);
     asTextHelper
       .mockReturnValueOnce(data.post_title[0].text)
@@ -52,14 +51,25 @@ describe("PostsSection", () => {
       published_at: new Date(first_publication_date).toLocaleDateString(
         "pt-BR",
         {
-          day: "2-digit",
-          month: "long",
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        }
+      ),
+      last_modified: new Date(last_publication_date).toLocaleDateString(
+        "pt-BR",
+        {
+          day: "numeric",
+          month: "short",
           year: "numeric",
         }
       ),
     };
 
-    expect(value).toEqual({ props: { postData: { ...post } } });
+    expect(value).toEqual({
+      props: { postData: { ...post } },
+      revalidate: 60 * 60 * 24,
+    });
   });
 
   // test("it should render post title", async () => {
