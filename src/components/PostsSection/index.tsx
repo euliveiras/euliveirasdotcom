@@ -25,6 +25,8 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
           const excerpt = prismicH.asText(post.data.post_excerpt as any);
           const title = prismicH.asText(post.data.post_title as any);
           const timeToRead = post?.data.post_content?.reduce((acc, item) => {
+            if(item.type !== "paragraph") return acc + 0
+            console.log(item)
             const bodyText = item.text;
             const splitted = bodyText.split(" ");
             return acc + splitted.length;
