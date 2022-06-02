@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Grid, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, Image, Text } from "@chakra-ui/react";
 
 type HeaderProps = {
   data: {
@@ -16,23 +16,22 @@ type HeaderProps = {
 };
 
 export const Header = ({ data }: HeaderProps) => {
+  const hasData = typeof data !== "undefined" ? data : null;
+
   return (
-    <Grid as="header" w="100%" placeItems="center" >
+    <Grid as="header" w="100%" placeItems="center">
       <Flex justify="center" align="center" gap={8} padding="3em">
-        {/*}
-        borderRadius="1px"
-        boxShadow="0 0 0 1em #ee6352, 0 0 0 2em #d45379, 0 0 0 3em #a4558f"
-        mb={"5em"}
-      */}
         <Image
           boxSize="90px"
-          src={data?.profile_img?.url}
-          alt={data?.profile_img?.alt}
+          src={hasData.profile_img.url}
+          alt={hasData.profile_img.alt}
           borderRadius="full"
         />
         <Box>
-          <Text fontWeight={"medium"}>{data?.profile_name?.[0].text}</Text>
-          <Text fontWeight={"light"} fontStyle={"italic"}>{data?.profile_about?.[0].text}</Text>
+          <Text fontWeight={"medium"}>{hasData.profile_name[0].text}</Text>
+          <Text fontWeight={"light"} fontStyle={"italic"}>
+            {hasData.profile_about[0].text}
+          </Text>
         </Box>
       </Flex>
     </Grid>
