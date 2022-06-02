@@ -24,12 +24,13 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
         {posts.map((post) => {
           const excerpt = prismicH.asText(post.data.post_excerpt as any);
           const title = prismicH.asText(post.data.post_title as any);
-          const timeToRead = post?.data.post_content?.reduce((acc, item) => {
-            if(item.type !== "paragraph") return acc
+          const timeToRead = post.data.post_content.reduce((acc, item) => {
+            if (item.type !== "paragraph") return acc;
             const bodyText = item.text;
             const splitted = bodyText.split(" ");
             return acc + splitted.length;
           }, excerpt.split(" ").length + title.split(" ").length);
+          // time expected to read the post text
           return (
             <Box
               as="article"
@@ -45,19 +46,14 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
                 fontWeight={"bold"}
                 fontSize="2xl"
                 sx={{
-                  backgroundImage: "linear-gradient(98deg,#ee6352, #d45379, #a4558f)",
+                  backgroundImage:
+                    "linear-gradient(98deg,#ee6352, #d45379, #a4558f)",
                   backgroundPosition: "bottom left",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "0% 4px",
                   transition: "background-size 500ms ease-in-out",
                 }}
                 _groupHover={{ backgroundSize: "100% 4px", color: "inherit" }}
-                //   bgGradient="linear(#ee6352,#d45379,#a4558f)"
-                //   backgroundPosition={"bottom left"}
-                //   backgroundRepeat={"no-repeat"}
-                //   backgroundSize={"0% 4px"}
-                //   transition={" background-size 500ms ease-in-out"}
-                //   _groupHover={{ "background-size": "100% 4px", color: "inherit" }}
               >
                 {title}
               </Text>
