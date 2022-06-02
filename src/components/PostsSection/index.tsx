@@ -14,7 +14,6 @@ export const PostsSection = ({ posts }: PostsSectionData) => {
   const router = useRouter();
 
   const handleClick = async (uid: string) => {
-    await fetchService("/api/postClick", "post", { uid, first_visit: true });
     return router.push(`/posts/${uid}`);
   };
 

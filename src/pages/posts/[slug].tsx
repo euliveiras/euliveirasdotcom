@@ -32,9 +32,21 @@ export type PostProps = {
 export default function Post({ postData }: PostProps) {
   const router = useRouter();
   const variant = useBreakpointValue({ lg: true });
+  const hasData = typeof postData !== "undefined" ? postData : null;
 
   useEffect(() => {
-    const hasData = typeof postData !== "undefined" ? postData : null;
+    async function countFirstVisit() {
+      await fetchService("/api/postClick", "post", {
+        uid: hasData.uid,
+        first_visit: true,
+      })
+        .then((data) => console.log("first visit", data))
+        .catch((err) => console.log(err));
+    }
+    if (hasData !== null) countFirstVisit();
+  }, [hasData]);
+
+  useEffect(() => {
     const excerpt = hasData.excerpt;
     const title = hasData.title;
     const content = hasData.content;
@@ -47,17 +59,19 @@ export default function Post({ postData }: PostProps) {
       ) *
       60 *
       1000;
-
+    console.log(timeToTimeOut);
     const timeOut = setTimeout(() => {
       fetchService("/api/postClick", "post", {
         uid: hasData.uid,
         visit_retained: true,
-      }).then((data) => console.log(data));
+      })
+        .then((data) => console.log("visit retained", data))
+        .catch((err) => console.log(err));
     }, timeToTimeOut);
     return () => clearTimeout(timeOut);
   });
 
-  if (Object.is(router.isFallback, true) || Object.is(postData, undefined)) {
+  if (Object.is(router.isFallback, true) || typeof postData === "undefined") {
     return <Text>Carregando</Text>;
   }
 
@@ -155,7 +169,6 @@ export const getStaticPaths: GetStaticPaths = async (
   const params = document.results.map((result) => ({
     params: { slug: result.uid },
   }));
-  // console.log(document);
   return {
     paths: params,
     fallback: true,
@@ -173,8 +186,6 @@ export const getStaticProps: GetStaticProps = async (
     first_publication_date,
     last_publication_date: last_modified,
   } = await Prismic.getByUID<any>("post", String(uid), {});
-
-  // console.log(uid, data, first_publication_date);
 
   const post = {
     uid,
