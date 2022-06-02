@@ -34,24 +34,23 @@ export default function Post({ postData }: PostProps) {
   const variant = useBreakpointValue({ lg: true });
 
   useEffect(() => {
-    if (Object.is(postData, undefined)) return;
-    const excerpt = postData?.excerpt;
-    const title = postData?.title;
-    const content = postData?.content;
+    const hasData = typeof postData !== "undefined" ? postData : null;
+    const excerpt = hasData.excerpt;
+    const title = hasData.title;
+    const content = hasData.content;
     const timeToTimeOut =
       Math.ceil(
-        (content?.split(" ").length +
-          excerpt?.split(" ").length +
-          title?.split(" ").length) /
+        (content.split(" ").length +
+          excerpt.split(" ").length +
+          title.split(" ").length) /
           200
       ) *
       60 *
       1000;
 
-    // console.log(timeToTimeOut);
     const timeOut = setTimeout(() => {
       fetchService("/api/postClick", "post", {
-        uid: postData.uid,
+        uid: hasData.uid,
         visit_retained: true,
       }).then((data) => console.log(data));
     }, timeToTimeOut);
@@ -141,7 +140,7 @@ export default function Post({ postData }: PostProps) {
               textDecoration: "underline",
             },
           }}
-          dangerouslySetInnerHTML={{ __html: postData?.content }}
+          dangerouslySetInnerHTML={{ __html: postData.content }}
         />
       </Box>
     </>
