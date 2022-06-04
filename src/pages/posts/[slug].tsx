@@ -1,4 +1,12 @@
-import { Box, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  useBreakpointValue,
+  Collapse,
+  Button,
+  Grid,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import { RichTextField } from "@prismicio/types";
 import * as prismicH from "@prismicio/helpers";
@@ -11,7 +19,7 @@ import {
 } from "next";
 import { getPrismicClient } from "../../services/prismic";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchService } from "../../services/fetchService";
 
 export type PostProps = {
@@ -32,7 +40,10 @@ export type PostProps = {
 export default function Post({ postData }: PostProps) {
   const router = useRouter();
   const variant = useBreakpointValue({ lg: true });
+  const [show, setShow] = useState(false);
   const hasData = typeof postData !== "undefined" ? postData : null;
+
+  const handleToggle = () => setShow(!show);
 
   useEffect(() => {
     async function countFirstVisit() {
@@ -130,32 +141,50 @@ export default function Post({ postData }: PostProps) {
           marginBlockStart={4}
           marginBlockEnd={8}
         />
-        <Box
-          fontSize="lg"
-          lineHeight={"tall"}
-          sx={{
-            h2: {
-              fontSize: ["xl", "3xl"],
-              fontWeight: "bold",
-              fontFamily: "heading",
-              letterSpacing: "0.125rem",
-              marginBlockEnd: "1.7rem",
-            },
-            "p + h2": {
-              marginBlock: "1.7rem",
-            },
-            strong: {
-              color: "pink.500",
-            },
-            "p + p": {
-              marginBlockStart: "1rem",
-            },
-            a: {
-              textDecoration: "underline",
-            },
-          }}
-          dangerouslySetInnerHTML={{ __html: postData.content }}
-        />
+        <Grid placeItems="center">
+          <Box
+            position={"relative"}
+            fontSize="lg"
+            lineHeight={"tall"}
+            _after={{
+              content: "''",
+              display: "block",
+              position: "absolute",
+              inset: "0",
+              bgColor: "transparent",
+              bgGradient: !show && "linear(to-b, transparent, white)",
+            }}
+            sx={{
+              h2: {
+                fontSize: ["xl", "3xl"],
+                fontWeight: "bold",
+                fontFamily: "heading",
+                letterSpacing: "0.125rem",
+                marginBlockEnd: "1.7rem",
+              },
+              "p + h2": {
+                marginBlock: "1.7rem",
+              },
+              strong: {
+                color: "pink.500",
+              },
+              "p + p": {
+                marginBlockStart: "1rem",
+              },
+              a: {
+                textDecoration: "underline",
+              },
+            }}
+            dangerouslySetInnerHTML={{
+              __html: show
+                ? postData.content
+                : postData.content.split("<p>")[1],
+            }}
+          />
+          {!show && <Button size="lg" variant={"solid"} colorScheme={"pink"} onClick={handleToggle}>
+            Mostrar texto
+          </Button>}
+        </Grid>
       </Box>
     </>
   );
